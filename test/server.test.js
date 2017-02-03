@@ -1,6 +1,7 @@
 const chai = require('chai');
 const assert = chai.assert;
 const http = require('chai-http');
+const cowsay = require('cowsay');
 const server = require('../lib/http-server');
 
 chai.use(http);
@@ -39,6 +40,33 @@ describe('basic server function', () => {
             .query('name=Marty')
             .end((err, res) => {
                 assert.strictEqual(res.text, "Greetings, Marty!");
+                done();
+            });
+    });
+
+    it('GET /greet with name argument and greeting', done => {
+        request
+            .get('/greet')
+            .query('name=Marty')
+            .query('greeting=Hola')
+            .end((err, res) => {
+                assert.strictEqual(res.text, "Hola, Marty!");
+                done();
+            });
+    });
+
+    it('GET /greet with name, greeting and cow', done => {
+        request
+            .get('/greet')
+            .query('name=Marty')
+            .query('greeting=Hola')
+            .query('cow=true')
+            .end((err, res) => {
+                assert.strictEqual(res.text, cowsay.say({
+                    text: `Hola, Marty!`,
+                    e: 'oO',
+                    T: 'U'
+                }));
                 done();
             });
     });
