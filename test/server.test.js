@@ -33,4 +33,13 @@ describe('basic server function', () => {
                 done();
             });
     });
+    it('GET /greet with name argument plain', done => {
+        request
+            .get('/greet')
+            .query('name=Marty')
+            .end((err, res) => {
+                assert.strictEqual(res.text, "Greetings, Marty!");
+                done();
+            });
+    });
 });
