@@ -30,7 +30,7 @@ describe('basic server function', () => {
         request
             .get('/greet')
             .end((err, res) => {
-                assert.strictEqual(res.text, "Greetings, Stranger!");
+                assert.strictEqual(res.text, "Hello, Stranger!");
                 done();
             });
     });
@@ -39,7 +39,7 @@ describe('basic server function', () => {
             .get('/greet')
             .query('name=Marty')
             .end((err, res) => {
-                assert.strictEqual(res.text, "Greetings, Marty!");
+                assert.strictEqual(res.text, "Hello, Marty!");
                 done();
             });
     });
@@ -48,7 +48,7 @@ describe('basic server function', () => {
         request
             .get('/greet')
             .query('name=Marty')
-            .query('greeting=Hola')
+            .query('salutaion=Hola')
             .end((err, res) => {
                 assert.strictEqual(res.text, "Hola, Marty!");
                 done();
@@ -59,7 +59,7 @@ describe('basic server function', () => {
         request
             .get('/greet')
             .query('name=Marty')
-            .query('greeting=Hola')
+            .query('salutaion=Hola')
             .query('cow=true')
             .end((err, res) => {
                 assert.strictEqual(res.text, cowsay.say({
