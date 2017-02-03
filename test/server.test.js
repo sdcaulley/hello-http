@@ -12,7 +12,7 @@ describe('basic server function', () => {
         request
             .get('/')
             .end((err, res) => {
-                assert.strictEqual(res.text, 'hello world!');
+                assert.strictEqual(res.text, 'Hello world!');
                 done();
             });
     });
@@ -22,6 +22,14 @@ describe('basic server function', () => {
             .post('/')
             .end((err, res) => {
                 assert.strictEqual(res.text, 'CANNOT POST at /');
+                done();
+            });
+    });
+    it('GET /greet returns greeting using flags', done => {
+        request
+            .get('/greet')
+            .end((err, res) => {
+                assert.strictEqual(res.text, "Greetings, Stranger!");
                 done();
             });
     });

@@ -21,5 +21,8 @@
     "chai-http": "^3.0.0",
     "mocha": "^3.2.0",
     "superagent": "^3.4.1"
+  },
+  "dependencies": {
+    "cowsay": "^1.1.9"
   }
 }
