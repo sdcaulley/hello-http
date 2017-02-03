@@ -26,6 +26,7 @@ describe('basic server function', () => {
                 done();
             });
     });
+
     it('GET /greet returns greeting using flags', done => {
         request
             .get('/greet')
@@ -34,6 +35,7 @@ describe('basic server function', () => {
                 done();
             });
     });
+
     it('GET /greet with name argument plain', done => {
         request
             .get('/greet')
@@ -60,13 +62,22 @@ describe('basic server function', () => {
             .get('/greet')
             .query('name=Marty')
             .query('salutaion=Hola')
-            .query('cow=true')
+            .query('format=cowsay')
             .end((err, res) => {
                 assert.strictEqual(res.text, cowsay.say({
                     text: `Hola, Marty!`,
                     e: 'oO',
                     T: 'U'
                 }));
+                done();
+            });
+    });
+
+    it('GET /fact returns http fact', done => {
+        request
+            .get('/fact')
+            .end((err, res) => {
+                assert.strictEqual(res.text, "Development of HTTP was initiated by Tim Berners-Lee at CERN in 1989.");
                 done();
             });
     });
