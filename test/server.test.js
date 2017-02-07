@@ -81,4 +81,14 @@ describe('basic server function', () => {
                 done();
             });
     });
+
+    it.only('POST /fact returns array with new fact added', done => {
+        request
+            .post('/fact')
+            .send({ message: "The h stands for hyper." })
+            .end((err, res) => {
+                assert.strictEqual(res.text, '"The h stands for hyper."');
+                done();
+            })
+    })
 });
